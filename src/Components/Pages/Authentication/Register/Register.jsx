@@ -55,8 +55,8 @@ const Register = () => {
                             <p className="bg-slate-200 w-fit mx-auto px-3 relative bottom-3">OR</p>
                         </Typography>
                         <Box className="text-center mt-5">
-                            <button className="bg-white border-2 border-black px-5 py-3">
-                                <Typography variant="h5" className="flex items-center gap-2">
+                            <button className="bg-white border-2 border-black px-5 py-3 rounded-md">
+                                <Typography variant="h6" className="flex items-center gap-2">
                                     <FcGoogle className="text-3xl" />
                                     <p>Register with google</p>
                                 </Typography>

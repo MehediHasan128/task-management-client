@@ -3,6 +3,7 @@ import "./Banner.css";
 import task from '../../../assets/task.jpg';
 
 const Banner = () => {
+
   return (
     <div className="background bg-fixed">
       <Container>
