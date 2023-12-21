@@ -13,16 +13,29 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Avatar } from "@mui/material";
 
-const pages = ["Products", "Pricing", "Blog"];
+const routes = [
+  {
+    path: "/",
+    element: "Home",
+  },
+  {
+    path: "/dashBoard",
+    element: "DashBoard",
+  },
+];
 
 function Navbar() {
-  const { user } = React.useContext(AuthContext);
+  const { user, userLogout } = React.useContext(AuthContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+
+  const handelLogot = () => {
+    userLogout();
   };
 
   const handleCloseNavMenu = () => {
@@ -89,10 +102,21 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
+              {/* {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
+              ))} */}
+              {routes.map((route) => (
+                <>
+                  <MenuItem key={route}>
+                    <Link to={route.path}>
+                      <Typography variant="body1">
+                        <p className="mx-3">{route.element}</p>
+                      </Typography>
+                    </Link>
+                  </MenuItem>
+                </>
               ))}
             </Menu>
           </Box>
@@ -123,14 +147,14 @@ function Navbar() {
               display: { xs: "none", md: "flex" },
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+            {routes.map((route) => (
+              <>
+                <Link to={route.path}>
+                  <Typography variant="body1">
+                    <p className="mx-3">{route.element}</p>
+                  </Typography>
+                </Link>
+              </>
             ))}
           </Box>
 
@@ -158,7 +182,7 @@ function Navbar() {
                       "aria-labelledby": "basic-button",
                     }}
                   >
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={handelLogot}>Logout</MenuItem>
                   </Menu>
                 </Box>
               </>

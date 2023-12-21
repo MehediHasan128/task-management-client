@@ -1,6 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import "./Banner.css";
 import task from '../../../assets/task.jpg';
+import { Link } from "react-router-dom";
 
 const Banner = () => {
 
@@ -20,9 +21,11 @@ const Banner = () => {
                 <p>where productivity meets simplicity.</p>
               </Typography>
               <Box>
+                <Link to="/login">
                 <button className="bg-blue-600 px-5 py-3 rounded-lg">
                     Let{"'"}s Explore
                 </button>
+                </Link>
               </Box>
             </Box>
             <Box className="lg:w-[50%]">
