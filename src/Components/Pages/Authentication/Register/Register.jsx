@@ -1,8 +1,30 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
 import bg from "../../../../assets/register.jpg";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Register = () => {
+
+  const {createUser, createAndLogInWithGoogle, setDisplayName} = useContext(AuthContext);
+
+  const {register, handleSubmit} = useForm();
+
+  const onSubmit = (data) =>{
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+    
+    createUser(email, password)
+    .then(result =>{
+      const user = result.user;
+      if(user.uid){
+        setDisplayName(user, name)
+      }
+    })
+  }
+
   return (
     <div>
       <Container>
@@ -17,7 +39,7 @@ const Register = () => {
                   <p className="font-semibold text-center">Register Now</p>
                 </Typography>
                 <Box className="my-10">
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <Box className="space-y-3 px-10">
                             <div>
                                 <label>
@@ -25,7 +47,7 @@ const Register = () => {
                                         <p>Name</p>
                                     </Typography>
                                 </label>
-                                <input className="px-5 py-3 w-full rounded-md" type="text" name="" placeholder="Enter your name" />
+                                <input {...register("name")} className="px-5 py-3 w-full rounded-md" type="text" placeholder="Enter your name" />
                             </div>
                             <div>
                                 <label>
@@ -33,7 +55,7 @@ const Register = () => {
                                         <p>Email</p>
                                     </Typography>
                                 </label>
-                                <input className="px-5 py-3 w-full rounded-md" type="email" name="" placeholder="Enter your email" />
+                                <input {...register("email")} className="px-5 py-3 w-full rounded-md" type="email" placeholder="Enter your email" />
                             </div>
                             <div>
                                 <label>
@@ -41,7 +63,7 @@ const Register = () => {
                                         <p>Password</p>
                                     </Typography>
                                 </label>
-                                <input className="px-5 py-3 w-full rounded-md" type="password" placeholder="Enter a password" />
+                                <input {...register("password")} className="px-5 py-3 w-full rounded-md" type="password" placeholder="Enter a password" />
                             </div>
                             <div>
                                 <input className="px-5 py-3 w-full rounded-md bg-blue-500 mt-5 text-white font-semibold cursor-pointer" type="submit" value="Register" />
