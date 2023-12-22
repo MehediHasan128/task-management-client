@@ -9,7 +9,7 @@ const DisplayTask = () => {
   const [allTask, setAllTask] = useState([]);
 
   useEffect(() => {
-    axiosPublic.get("/post").then((res) => {
+    axiosPublic.get("/task").then((res) => {
       setAllTask(res.data);
     });
   }, [axiosPublic]);
