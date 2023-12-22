@@ -38,25 +38,25 @@ const DashBoard = () => {
 
     return (
         <div className="space-y-5">
-            <Box className="flex justify-between">
-                <Box className="bg-slate-800 rounded-md text-white w-[45%] py-10 text-center">
+            <Box className="flex flex-col lg:flex-row justify-between gap-5 lg:gap-0">
+                <Box className="bg-slate-800 rounded-md text-white lg:w-[45%] py-10 text-center">
                     <Typography variant="h5">
                         <p>This Website is benifitial for</p>
                     </Typography>
-                    <Box className="my-5 px-5 flex justify-center gap-10">
-                        <Box className="w-fit text-center border p-5 bg-zinc-900 rounded-md">
+                    <Box className="my-5 px-5 flex flex-col lg:flex-row justify-center gap-10">
+                        <Box className="w-fit mx-auto text-center border p-5 bg-zinc-900 rounded-md">
                             <Typography variant="h5">
                             <FaCode className="w-fit mx-auto" />
                             <p className="mt-3">Developers</p>
                             </Typography>
                         </Box>
-                        <Box className="w-fit text-center border p-5 bg-zinc-900 rounded-md">
+                        <Box className="w-fit mx-auto text-center border p-5 bg-zinc-900 rounded-md">
                             <Typography variant="h5">
                             <BsBank className="w-fit mx-auto" />
                             <p className="mt-3">Bankers</p>
                             </Typography>
                         </Box>
-                        <Box className="w-fit text-center border p-5 bg-zinc-900 rounded-md">
+                        <Box className="w-fit mx-auto text-center border p-5 bg-zinc-900 rounded-md">
                             <Typography variant="h5">
                             <TbBrandOffice className="w-fit mx-auto" />
                             <p className="mt-3">Job Holder</p>
@@ -64,12 +64,12 @@ const DashBoard = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Box className="bg-slate-800 rounded-md text-white w-[50%] py-10">
+                <Box className="bg-slate-800 rounded-md text-white lg:w-[50%] py-10">
                     <Typography className="flex justify-center items-center gap-3" variant="h5">
                     <FaPlus />
                     <p>Add New task</p>
                     </Typography>
-                    <Box className="w-[70%] mx-auto bg-slate-900 mt-5 p-10 rounded-md">
+                    <Box className="w-[95%] lg:w-[70%] mx-auto bg-slate-900 mt-5 p-10 rounded-md">
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
                             <div>
                                 <label>

@@ -171,7 +171,7 @@ function Navbar() {
                     aria-expanded={open ? "true" : undefined}
                     onClick={handleClick}
                   >
-                    <Avatar>{}</Avatar>
+                    <Avatar src={user?.photoURL} />
                   </Button>
                   <Menu
                     id="basic-menu"

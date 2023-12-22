@@ -4,25 +4,42 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
+
+const image_hosting_api = "https://api.imgbb.com/1/upload?key=10334c0a2d64f2e43b1e182f4434bad5" 
 
 const Register = () => {
 
   const {createUser, createAndLogInWithGoogle, setDisplayName} = useContext(AuthContext);
+  const axioxPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const {register, handleSubmit} = useForm();
 
-  const onSubmit = (data) =>{
+  const onSubmit = async(data) =>{
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    
-    createUser(email, password)
+    const imageFile = {image: data.image[0]}
+
+
+    const res = await axioxPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    })
+
+    if(res.data.success){
+      createUser(email, password)
     .then(result =>{
       const user = result.user;
       if(user.uid){
-        setDisplayName(user, name)
+        setDisplayName(user, name, res.data.data.display_url)
       }
+      navigate('/')
     })
+    }
   }
 
   const handelRegisterWithGoogle = () =>{
@@ -68,6 +85,14 @@ const Register = () => {
                                     </Typography>
                                 </label>
                                 <input {...register("password")} className="px-5 py-3 w-full rounded-md" type="password" placeholder="Enter a password" />
+                            </div>
+                            <div>
+                                <label>
+                                    <Typography variant="h6">
+                                        <p>Upload Image</p>
+                                    </Typography>
+                                </label>
+                                <input {...register('image')} className="bg-white px-5 py-3 w-full rounded-md" type="file" />
                             </div>
                             <div>
                                 <input className="px-5 py-3 w-full rounded-md bg-blue-500 mt-5 text-white font-semibold cursor-pointer" type="submit" value="Register" />

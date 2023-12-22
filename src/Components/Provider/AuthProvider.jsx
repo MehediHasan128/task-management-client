@@ -31,9 +31,10 @@ const AuthProvider = ({children}) => {
     }
 
 
-    const setDisplayName = (user, name) =>{
+    const setDisplayName = (user, name, photo) =>{
         updateProfile(user, {
-            displayName: name
+            displayName: name,
+            photoURL: photo
         })
     }
 

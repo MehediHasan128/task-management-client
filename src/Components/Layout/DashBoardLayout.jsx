@@ -40,7 +40,7 @@ const DashBoardLayout = () => {
                   <Avatar
                     sx={{ width: "120px", height: "120px", margin: "0 auto" }}
                     alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
+                    src={user?.photoURL}
                   />
                   <Typography variant="h4">
                     <p className="font-semibold text-center">
@@ -107,7 +107,7 @@ const DashBoardLayout = () => {
             </div>
           </div>
         </Box>
-        <Box className="py-10 pr-10 w-full">
+        <Box className="py-10 lg:pr-10 px-5 lg:px-0 w-full">
           <DashBoard />
         </Box>
       </Box>
